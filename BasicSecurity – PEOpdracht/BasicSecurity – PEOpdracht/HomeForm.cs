@@ -34,7 +34,7 @@ namespace BasicSecurity___PEOpdracht
 
         private void steganografieButton_Click(object sender, EventArgs e)
         {
-            Steganography form = new Steganography();
+            SteganographyForm form = new SteganographyForm();
             form.Show();
         }
 

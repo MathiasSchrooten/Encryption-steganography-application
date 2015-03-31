@@ -45,7 +45,7 @@
             // encryptButton
             // 
             this.encryptButton.Location = new System.Drawing.Point(339, 274);
-            this.encryptButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.encryptButton.Margin = new System.Windows.Forms.Padding(2);
             this.encryptButton.Name = "encryptButton";
             this.encryptButton.Size = new System.Drawing.Size(64, 19);
             this.encryptButton.TabIndex = 0;
@@ -56,7 +56,7 @@
             // toEncrypt
             // 
             this.toEncrypt.Location = new System.Drawing.Point(339, 102);
-            this.toEncrypt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.toEncrypt.Margin = new System.Windows.Forms.Padding(2);
             this.toEncrypt.Multiline = true;
             this.toEncrypt.Name = "toEncrypt";
             this.toEncrypt.Size = new System.Drawing.Size(137, 109);
@@ -76,7 +76,7 @@
             // decryptButton
             // 
             this.decryptButton.Location = new System.Drawing.Point(407, 274);
-            this.decryptButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.decryptButton.Margin = new System.Windows.Forms.Padding(2);
             this.decryptButton.Name = "decryptButton";
             this.decryptButton.Size = new System.Drawing.Size(68, 19);
             this.decryptButton.TabIndex = 3;
@@ -87,7 +87,7 @@
             // thePicture
             // 
             this.thePicture.Location = new System.Drawing.Point(19, 10);
-            this.thePicture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.thePicture.Margin = new System.Windows.Forms.Padding(2);
             this.thePicture.Name = "thePicture";
             this.thePicture.Size = new System.Drawing.Size(304, 283);
             this.thePicture.TabIndex = 4;
@@ -96,7 +96,7 @@
             // fileButton
             // 
             this.fileButton.Location = new System.Drawing.Point(339, 10);
-            this.fileButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.fileButton.Margin = new System.Windows.Forms.Padding(2);
             this.fileButton.Name = "fileButton";
             this.fileButton.Size = new System.Drawing.Size(136, 19);
             this.fileButton.TabIndex = 5;
@@ -107,7 +107,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(339, 249);
+            this.label2.Location = new System.Drawing.Point(327, 249);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(120, 13);
@@ -169,9 +169,12 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toEncrypt);
             this.Controls.Add(this.encryptButton);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MinimumSize = new System.Drawing.Size(261, 65);
             this.Name = "Steganography";
-            this.Text = "Steganography";
+            this.Text = "ambiance_ThemeContainer1";
+            this.TransparencyKey = System.Drawing.Color.Fuchsia;
             ((System.ComponentModel.ISupportInitialize)(this.thePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

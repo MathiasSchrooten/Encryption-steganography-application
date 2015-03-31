@@ -15,8 +15,10 @@ namespace BasicSecurity___PEOpdracht
 {
     public partial class Steganography : Form
     {
+        Boolean pictureIsSelected = false;
         public Steganography()
         {
+            
             InitializeComponent();
         }
 
@@ -42,6 +44,7 @@ namespace BasicSecurity___PEOpdracht
                 SaveFileDialog dialog = new SaveFileDialog();
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    pictureIsSelected = true;
                     bmp.Save(dialog.FileName, ImageFormat.Bmp);
                     toEncrypt.Text = "";
                 }
@@ -72,8 +75,11 @@ namespace BasicSecurity___PEOpdracht
 
         private void toEncrypt_TextChanged(object sender, EventArgs e)
         {
-            
-                berekenMaxSize();
+            if (pictureIsSelected)
+            {
+                 berekenMaxSize();
+            }
+               
            
             
         }
