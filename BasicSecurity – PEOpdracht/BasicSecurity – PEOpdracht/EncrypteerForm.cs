@@ -21,6 +21,9 @@ namespace BasicSecurity___PEOpdracht
             InitializeComponent();
 
             ambianceControlBox.EnableMaximize = false;
+            this.AllowDrop = true;
+            this.DragEnter += messageTextbox_DragEnter;
+            this.DragDrop += messageTextbox_DragDrop;
         }
 
         private void encryptMessageButton_Click(object sender, EventArgs e)
@@ -99,6 +102,37 @@ namespace BasicSecurity___PEOpdracht
         private void succesAmbianceLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(Properties.Settings.Default.SharedFolder);
+        }
+
+        private void messageTextbox_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void messageTextbox_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] filePaths = (string[])(e.Data.GetData(DataFormats.FileDrop));
+                foreach (string fileLoc in filePaths)
+                {
+                    // Code to read the contents of the text file
+                    if (File.Exists(fileLoc))
+                    {
+                        using (TextReader tr = new StreamReader(fileLoc))
+                        {
+                            messageTextbox.Text += (tr.ReadToEnd());
+                        }
+                    }
+                }
+            }
         }
     }
 }

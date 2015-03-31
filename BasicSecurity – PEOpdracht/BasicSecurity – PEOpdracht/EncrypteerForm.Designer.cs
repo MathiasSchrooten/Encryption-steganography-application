@@ -167,6 +167,8 @@
             this.messageTextbox.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.messageTextbox.UseSystemPasswordChar = false;
             this.messageTextbox.TextChanged += new System.EventHandler(this.messageTextbox_TextChanged);
+            this.messageTextbox.DragDrop += new System.Windows.Forms.DragEventHandler(this.messageTextbox_DragDrop);
+            this.messageTextbox.DragEnter += new System.Windows.Forms.DragEventHandler(this.messageTextbox_DragEnter);
             // 
             // ambiance_Label1
             // 
