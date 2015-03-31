@@ -76,14 +76,14 @@
             // steganografieButton
             // 
             this.steganografieButton.BackColor = System.Drawing.Color.Transparent;
+            this.steganografieButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.steganografieButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.steganografieButton.Image = null;
-            this.steganografieButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.steganografieButton.Image = ((System.Drawing.Image)(resources.GetObject("steganografieButton.Image")));
+            this.steganografieButton.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.steganografieButton.Location = new System.Drawing.Point(23, 322);
             this.steganografieButton.Name = "steganografieButton";
             this.steganografieButton.Size = new System.Drawing.Size(256, 256);
             this.steganografieButton.TabIndex = 3;
-            this.steganografieButton.Text = "Steganography";
             this.steganografieButton.TextAlignment = System.Drawing.StringAlignment.Center;
             this.steganografieButton.Click += new System.EventHandler(this.steganografieButton_Click);
             // 
@@ -150,8 +150,8 @@
         private Ambiance.Ambiance_ControlBox ambianceControlBox;
         private Ambiance.Ambiance_Button_1 encrypteerButton;
         private Ambiance.Ambiance_Button_1 settingsButton;
-        private Ambiance.Ambiance_Button_1 steganografieButton;
         private Ambiance.Ambiance_Button_1 decrypteerButton;
+        private Ambiance.Ambiance_Button_1 steganografieButton;
     }
 }
 

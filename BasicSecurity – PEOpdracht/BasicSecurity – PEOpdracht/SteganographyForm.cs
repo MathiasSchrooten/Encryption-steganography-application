@@ -91,7 +91,7 @@ namespace BasicSecurity___PEOpdracht
             int maxSize = (thePicture.Image.Width * thePicture.Image.Height * 3) / 8;
             maxSizeLabel.Text = maxSize.ToString() + " karakters.";
 
-            //toEncrypt.Text.Length nog / 8?
+            
         }
 
         private void toEncrypt_TextChanged_1(object sender, EventArgs e)
