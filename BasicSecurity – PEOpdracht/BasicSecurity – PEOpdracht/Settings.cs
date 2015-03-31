@@ -17,6 +17,7 @@ namespace BasicSecurity___PEOpdracht
             InitializeComponent();
 
             ambianceControlBox.EnableMaximize = false;
+            ambianceControlBox.Location = new Point(this.Width - 49, 13);
         }
 
         private void selectFolderButton_Click(object sender, EventArgs e)

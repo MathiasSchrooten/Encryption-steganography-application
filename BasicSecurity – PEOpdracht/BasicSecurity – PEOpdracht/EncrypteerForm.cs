@@ -21,6 +21,8 @@ namespace BasicSecurity___PEOpdracht
             InitializeComponent();
 
             ambianceControlBox.EnableMaximize = false;
+            ambianceControlBox.Location = new Point(this.Width - 49, 13);
+
             this.AllowDrop = true;
             this.DragEnter += messageTextbox_DragEnter;
             this.DragDrop += messageTextbox_DragDrop;

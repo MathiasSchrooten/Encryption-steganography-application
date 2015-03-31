@@ -30,6 +30,7 @@
         {
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ambianceThemeContainer = new Ambiance.Ambiance_ThemeContainer();
+            this.ambianceControlBox = new Ambiance.Ambiance_ControlBox();
             this.errorLabel = new Ambiance.Ambiance_Label();
             this.succesAmbianceLinkLabel = new Ambiance.Ambiance_LinkLabel();
             this.encryptMessageButton = new Ambiance.Ambiance_Button_1();
@@ -38,7 +39,6 @@
             this.ambiance_Label2 = new Ambiance.Ambiance_Label();
             this.messageTextbox = new Ambiance.Ambiance_TextBox();
             this.ambiance_Label1 = new Ambiance.Ambiance_Label();
-            this.ambianceControlBox = new Ambiance.Ambiance_ControlBox();
             this.ambianceThemeContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +49,7 @@
             // ambianceThemeContainer
             // 
             this.ambianceThemeContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            this.ambianceThemeContainer.Controls.Add(this.ambianceControlBox);
             this.ambianceThemeContainer.Controls.Add(this.errorLabel);
             this.ambianceThemeContainer.Controls.Add(this.succesAmbianceLinkLabel);
             this.ambianceThemeContainer.Controls.Add(this.encryptMessageButton);
@@ -57,7 +58,6 @@
             this.ambianceThemeContainer.Controls.Add(this.ambiance_Label2);
             this.ambianceThemeContainer.Controls.Add(this.messageTextbox);
             this.ambianceThemeContainer.Controls.Add(this.ambiance_Label1);
-            this.ambianceThemeContainer.Controls.Add(this.ambianceControlBox);
             this.ambianceThemeContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ambianceThemeContainer.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.ambianceThemeContainer.Location = new System.Drawing.Point(0, 0);
@@ -70,6 +70,18 @@
             this.ambianceThemeContainer.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.ambianceThemeContainer.TabIndex = 0;
             this.ambianceThemeContainer.Text = "Encrypt";
+            // 
+            // ambianceControlBox
+            // 
+            this.ambianceControlBox.BackColor = System.Drawing.Color.Transparent;
+            this.ambianceControlBox.EnableMaximize = true;
+            this.ambianceControlBox.EnableMinimize = true;
+            this.ambianceControlBox.Font = new System.Drawing.Font("Marlett", 7F);
+            this.ambianceControlBox.Location = new System.Drawing.Point(450, 13);
+            this.ambianceControlBox.Name = "ambianceControlBox";
+            this.ambianceControlBox.Size = new System.Drawing.Size(64, 22);
+            this.ambianceControlBox.TabIndex = 10;
+            this.ambianceControlBox.Text = "ambiance_ControlBox1";
             // 
             // errorLabel
             // 
@@ -182,18 +194,6 @@
             this.ambiance_Label1.TabIndex = 1;
             this.ambiance_Label1.Text = "Text to encrypt:";
             // 
-            // ambianceControlBox
-            // 
-            this.ambianceControlBox.BackColor = System.Drawing.Color.Transparent;
-            this.ambianceControlBox.EnableMaximize = true;
-            this.ambianceControlBox.EnableMinimize = true;
-            this.ambianceControlBox.Font = new System.Drawing.Font("Marlett", 7F);
-            this.ambianceControlBox.Location = new System.Drawing.Point(5, 13);
-            this.ambianceControlBox.Name = "ambianceControlBox";
-            this.ambianceControlBox.Size = new System.Drawing.Size(64, 22);
-            this.ambianceControlBox.TabIndex = 0;
-            this.ambianceControlBox.Text = "ambiance_ControlBox1";
-            // 
             // EncrypteerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,7 +215,6 @@
         #endregion
 
         private Ambiance.Ambiance_ThemeContainer ambianceThemeContainer;
-        private Ambiance.Ambiance_ControlBox ambianceControlBox;
         private Ambiance.Ambiance_Label ambiance_Label1;
         private Ambiance.Ambiance_TextBox messageTextbox;
         private Ambiance.Ambiance_Label ambiance_Label2;
@@ -225,6 +224,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private Ambiance.Ambiance_LinkLabel succesAmbianceLinkLabel;
         private Ambiance.Ambiance_Label errorLabel;
+        private Ambiance.Ambiance_ControlBox ambianceControlBox;
 
     }
 }

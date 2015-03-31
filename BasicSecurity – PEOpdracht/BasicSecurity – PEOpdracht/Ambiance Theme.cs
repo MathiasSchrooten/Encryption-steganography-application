@@ -731,7 +731,7 @@ public class Ambiance_ControlBox : Control
     {
         base.OnCreateControl();
         // Auto-decide control location on the theme container
-        Location = new Point(5, 13);
+        //Location = new Point(450, 13);
     }
 
     protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
