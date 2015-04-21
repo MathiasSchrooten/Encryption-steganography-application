@@ -11,7 +11,15 @@ namespace BasicSecurity___PEOpdracht
 {
     class RSA
     {
+        // 0 = A
+        // 1 = B
+        private int persoon = 0;
 
+        public int Persoon
+        {
+            get { return persoon;}
+            set { persoon = value; }
+        }
 
         public String EncrypteerBericht(String message)
         {
@@ -38,11 +46,21 @@ namespace BasicSecurity___PEOpdracht
                     //writer.Write(RSA.ToXmlString(false));
                     //writer.Close();
 
-                    StreamReader reader = new StreamReader("PrivateB.txt");
-                    String PrivateA = reader.ReadLine();
+                    StreamReader reader;
+
+                    if (persoon == 0)
+                    {
+                        reader = new StreamReader(Properties.Settings.Default.SharedFolder +  "/Keys/PublicB.txt");
+                    }
+                    else
+                    {
+                        reader = new StreamReader(Properties.Settings.Default.SharedFolder + "/Keys/PublicA.txt");
+                    }
+
+                    String key = reader.ReadLine();
                     reader.Close();
 
-                    RSA.FromXmlString(PrivateA);
+                    RSA.FromXmlString(key);
 
                     encryptedData = RSAEncrypt(dataToEncrypt, RSA.ExportParameters(false), false);
                     //encryptedData = RSA.Encrypt(dataToEncrypt, false);
@@ -77,6 +95,23 @@ namespace BasicSecurity___PEOpdracht
                 //public and private key data. 
                 using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
                 {
+                    StreamReader reader;
+
+                    if (persoon == 0)
+                    {
+                        reader = new StreamReader(Properties.Settings.Default.SharedFolder + "/Keys/PrivateA.txt");
+                    }
+                    else
+                    {
+                        reader = new StreamReader(Properties.Settings.Default.SharedFolder + "/Keys/PrivateB.txt");
+                    }
+
+                    String key = reader.ReadLine();
+
+                    reader.Close();
+
+                    RSA.FromXmlString(key);
+
                     //Pass the data to DECRYPT, the private key information  
                     //(using RSACryptoServiceProvider.ExportParameters(true), 
                     //and a boolean flag specifying no OAEP padding.

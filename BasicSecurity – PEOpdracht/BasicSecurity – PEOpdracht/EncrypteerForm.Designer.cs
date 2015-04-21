@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.ambianceThemeContainer = new Ambiance.Ambiance_ThemeContainer();
+            this.encryptFileButton = new Ambiance.Ambiance_Button_1();
             this.ambianceControlBox = new Ambiance.Ambiance_ControlBox();
             this.errorLabel = new Ambiance.Ambiance_Label();
             this.succesAmbianceLinkLabel = new Ambiance.Ambiance_LinkLabel();
@@ -46,9 +49,14 @@
             // 
             this.openFileDialog.Filter = ".txt files|*.txt";
             // 
+            // toolTip
+            // 
+            this.toolTip.IsBalloon = true;
+            // 
             // ambianceThemeContainer
             // 
             this.ambianceThemeContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            this.ambianceThemeContainer.Controls.Add(this.encryptFileButton);
             this.ambianceThemeContainer.Controls.Add(this.ambianceControlBox);
             this.ambianceThemeContainer.Controls.Add(this.errorLabel);
             this.ambianceThemeContainer.Controls.Add(this.succesAmbianceLinkLabel);
@@ -70,6 +78,20 @@
             this.ambianceThemeContainer.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.ambianceThemeContainer.TabIndex = 0;
             this.ambianceThemeContainer.Text = "Encrypt";
+            // 
+            // encryptFileButton
+            // 
+            this.encryptFileButton.BackColor = System.Drawing.Color.Transparent;
+            this.encryptFileButton.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.encryptFileButton.Image = null;
+            this.encryptFileButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.encryptFileButton.Location = new System.Drawing.Point(498, 380);
+            this.encryptFileButton.Name = "encryptFileButton";
+            this.encryptFileButton.Size = new System.Drawing.Size(177, 30);
+            this.encryptFileButton.TabIndex = 11;
+            this.encryptFileButton.Text = "Encrypt file";
+            this.encryptFileButton.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.encryptFileButton.Click += new System.EventHandler(this.encryptFileButton_Click);
             // 
             // ambianceControlBox
             // 
@@ -151,6 +173,7 @@
             this.toggleABAmbiance.Text = "ambiance_AB1";
             this.toggleABAmbiance.Toggled = true;
             this.toggleABAmbiance.Type = Ambiance.Ambiance_AB._Type.AB;
+            this.toggleABAmbiance.ToggledChanged += new Ambiance.Ambiance_AB.ToggledChangedEventHandler(this.toggleABAmbiance_ToggledChanged);
             // 
             // ambiance_Label2
             // 
@@ -225,6 +248,8 @@
         private Ambiance.Ambiance_LinkLabel succesAmbianceLinkLabel;
         private Ambiance.Ambiance_Label errorLabel;
         private Ambiance.Ambiance_ControlBox ambianceControlBox;
+        private Ambiance.Ambiance_Button_1 encryptFileButton;
+        private System.Windows.Forms.ToolTip toolTip;
 
     }
 }

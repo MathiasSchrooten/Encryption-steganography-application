@@ -26,6 +26,8 @@ namespace BasicSecurity___PEOpdracht
             this.AllowDrop = true;
             this.DragEnter += messageTextbox_DragEnter;
             this.DragDrop += messageTextbox_DragDrop;
+
+            toolTip.SetToolTip(ambianceThemeContainer, "Drag & drop a file here to read from it");
         }
 
         private void encryptMessageButton_Click(object sender, EventArgs e)
@@ -135,6 +137,35 @@ namespace BasicSecurity___PEOpdracht
                     }
                 }
             }
+        }
+
+        private void encryptFileButton_Click(object sender, EventArgs e)
+        {
+            openFileDialog.ShowDialog();
+
+            if (openFileDialog.FileName != "")
+            {
+                StreamReader reader = new StreamReader(openFileDialog.FileName);
+
+                String ingelezenTekst = reader.ReadToEnd();
+
+                reader.Close();
+
+                des = new DES();
+                rsa = new RSA();
+
+                String encryptedData = des.EncrypteerBericht(ingelezenTekst);
+                String encryptedKey = rsa.EncrypteerBericht(Convert.ToBase64String(des.Key));
+
+                StreamWriter writer = new StreamWriter(openFileDialog.FileName);
+
+                writer.Write(encryptedData);
+            }
+        }
+
+        private void toggleABAmbiance_ToggledChanged()
+        {
+
         }
     }
 }
