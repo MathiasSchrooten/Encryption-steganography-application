@@ -94,7 +94,7 @@ namespace BasicSecurity___PEOpdracht
 
                 //Create a new instance of RSACryptoServiceProvider to generate 
                 //public and private key data. 
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(1024))
                 {
                     StreamReader reader;
 
