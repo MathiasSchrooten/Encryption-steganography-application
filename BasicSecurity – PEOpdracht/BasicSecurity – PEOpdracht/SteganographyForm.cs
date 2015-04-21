@@ -17,7 +17,6 @@ namespace BasicSecurity___PEOpdracht
         public SteganographyForm()
         {
            
-
             InitializeComponent();
 
         }
@@ -56,7 +55,16 @@ namespace BasicSecurity___PEOpdracht
 
         private void decryptButton_Click(object sender, EventArgs e)
         {
-            toEncrypt.Text = SteganographyClass.extractText((Bitmap)thePicture.Image);
+            if (pictureIsSelected)
+            {
+               // try
+               // {
+                //TODO: PAS DE TEXT DIE GEENCRYPTEERD WORDT AAN ZODAT ER EEN SPECIALE CODE VOORGEPLAATST WORDT -> ZO KAN ER GECHECKT WORDEN OF DE AANGEDUIDE FOTO GENCRYPTEERD IS OF NIET
+                    toEncrypt.Text = SteganographyClass.extractText((Bitmap)thePicture.Image);
+                //
+                
+            }
+            
 
         }
 
@@ -67,14 +75,8 @@ namespace BasicSecurity___PEOpdracht
             {
                 thePicture.ImageLocation = openFileDialog.FileName;
                 pictureIsSelected = true;
-                
-
-
             }
         }
-
-        
-        
 
         public enum State
         {
@@ -82,24 +84,33 @@ namespace BasicSecurity___PEOpdracht
             Filling_With_Zeros
         };
 
-        
-
-        private void berekenMaxSize()
+        private int berekenMaxSize()
         {
-
             currentSizeLabel.Text = toEncrypt.Text.Length.ToString();
             int maxSize = (thePicture.Image.Width * thePicture.Image.Height * 3) / 8;
-            maxSizeLabel.Text = maxSize.ToString() + " karakters.";
-
-            
+            toEncrypt.MaxLength = maxSize;
+            return maxSize;
         }
 
         private void toEncrypt_TextChanged_1(object sender, EventArgs e)
         {
             if (pictureIsSelected)
             {
-                berekenMaxSize();
+                maxSizeLabel.Text = berekenMaxSize().ToString() + " karakters.";
+                
             }
+        }
+      
+        
+
+        private void toEncrypt_KeyDown(object sender, KeyEventArgs e)
+        {
+           
+        }
+
+        private void toEncrypt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+          
         }
     }
 }

@@ -200,6 +200,8 @@
             this.toEncrypt.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.toEncrypt.UseSystemPasswordChar = false;
             this.toEncrypt.TextChanged += new System.EventHandler(this.toEncrypt_TextChanged_1);
+            this.toEncrypt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toEncrypt_KeyDown);
+            this.toEncrypt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.toEncrypt_KeyPress);
             // 
             // fileButton
             // 
