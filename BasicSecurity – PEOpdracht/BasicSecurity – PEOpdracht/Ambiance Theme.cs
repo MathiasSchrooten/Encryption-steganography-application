@@ -24,6 +24,24 @@ using System.Windows.Forms;
 
 namespace Ambiance
 {
+    public class Ambiance
+    {
+        private Color lightColor = Color.FromArgb(242, 132, 99);
+        private Color darkColor = Color.FromArgb(224, 82, 33);
+
+        public Color LightColor
+        {
+            get { return lightColor; }
+            set { lightColor = value; }
+        }
+
+        public Color DarkColor
+        {
+            get { return darkColor; }
+            set { darkColor = value; }
+        }
+    }
+
     #region RoundRectangle
 
     static class RoundRectangle
