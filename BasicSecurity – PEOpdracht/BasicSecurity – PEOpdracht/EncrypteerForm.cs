@@ -28,15 +28,15 @@ namespace BasicSecurity___PEOpdracht
             this.DragDrop += messageTextbox_DragDrop;
 
             toolTip.SetToolTip(ambianceThemeContainer, "Drag & drop a file here to read from it");
+
+            des = new DES();
+            rsa = new RSA();
         }
 
         private void encryptMessageButton_Click(object sender, EventArgs e)
         {
             try
             {
-                des = new DES();
-                rsa = new RSA();
-
                 String encryptedData = des.EncrypteerBericht(messageTextbox.Text);
                 String encryptedKey = rsa.EncrypteerBericht(Convert.ToBase64String(des.Key));
 
@@ -151,9 +151,6 @@ namespace BasicSecurity___PEOpdracht
 
                 reader.Close();
 
-                des = new DES();
-                rsa = new RSA();
-
                 String encryptedData = des.EncrypteerBericht(ingelezenTekst);
                 String encryptedKey = rsa.EncrypteerBericht(Convert.ToBase64String(des.Key));
 
@@ -165,7 +162,14 @@ namespace BasicSecurity___PEOpdracht
 
         private void toggleABAmbiance_ToggledChanged()
         {
-
+            if (toggleABAmbiance.Toggled == true)
+            {
+                rsa.Persoon = 0;
+            }
+            else
+            {
+                rsa.Persoon = 1;
+            }
         }
     }
 }

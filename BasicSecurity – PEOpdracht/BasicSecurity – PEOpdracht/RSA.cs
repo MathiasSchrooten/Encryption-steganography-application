@@ -58,6 +58,7 @@ namespace BasicSecurity___PEOpdracht
                     }
 
                     String key = reader.ReadLine();
+
                     reader.Close();
 
                     RSA.FromXmlString(key);
