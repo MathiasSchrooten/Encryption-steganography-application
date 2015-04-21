@@ -82,8 +82,9 @@ namespace BasicSecurity___PEOpdracht
             return encryptedDataString;
         }
 
-        public void DecrypteerBericht(byte[] encrypted)
+        public String DecrypteerBericht(String encrypted)
         {
+            String decryptedDataString = "";
             try
             {
                 //Create a UnicodeEncoder to convert between byte array and string.
@@ -112,14 +113,16 @@ namespace BasicSecurity___PEOpdracht
                     reader.Close();
 
                     RSA.FromXmlString(key);
-
+                    byte[] Encrbytes = new byte[encrypted.Length * sizeof(char)];
+                    System.Buffer.BlockCopy(encrypted.ToCharArray(), 0, Encrbytes, 0, Encrbytes.Length);
                     //Pass the data to DECRYPT, the private key information  
                     //(using RSACryptoServiceProvider.ExportParameters(true), 
                     //and a boolean flag specifying no OAEP padding.
-                    decryptedData = RSADecrypt(encrypted, RSA.ExportParameters(true), false);
+                    decryptedData = RSADecrypt(Encrbytes, RSA.ExportParameters(true), false);
 
                     //Display the decrypted plaintext to the console. 
                     Console.WriteLine("Decrypted plaintext: {0}", ByteConverter.GetString(decryptedData));
+                    decryptedDataString = Convert.ToString(decryptedData);
                 }
             }
             catch (ArgumentNullException)
@@ -129,6 +132,7 @@ namespace BasicSecurity___PEOpdracht
                 Console.WriteLine("Encryption failed.");
 
             }
+            return decryptedDataString;
         }
 
         static public byte[] RSAEncrypt(byte[] DataToEncrypt, RSAParameters RSAKeyInfo, bool DoOAEPPadding)

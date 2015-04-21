@@ -14,6 +14,8 @@ namespace BasicSecurity___PEOpdracht
     public partial class DecrypteerForm : Form
     {
         private string selectedFile = "";
+        private DES des;
+        private RSA rsa;
         public DecrypteerForm()
         {
             InitializeComponent();
@@ -22,17 +24,27 @@ namespace BasicSecurity___PEOpdracht
         private void selectFileButton_Click(object sender, EventArgs e)
         {
             openFileDialog.ShowDialog();
+            selectFileAction(openFileDialog.FileName);
 
-            if (openFileDialog.FileName != "")
+           
+        }
+        private void selectFileAction(string fileLocation)
+        {
+            if (fileLocation != "")
             {
-
-                selectedFile = openFileDialog.FileName;
-                selectedFileLabel.Text = "File selected: " + selectedFile;
+                selectedFile = fileLocation;
+                selectedFileLabel.Text = "File selected: " + fileLocation;
+                decryptButton.Enabled = true;
+                decryptTextBox.Enabled = true;
             }
             else
+            {
                 selectedFileLabel.Text = "No file selected";
+                selectedFile = "";
+                decryptButton.Enabled = false;
+                decryptTextBox.Enabled = false;
+            }
         }
-
         private void selectFileButton_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -55,11 +67,59 @@ namespace BasicSecurity___PEOpdracht
                     // Code to read the contents of the text file
                     if (File.Exists(fileLoc))
                     {
-                        selectedFile = fileLoc;
+                        selectFileAction(fileLoc);
                     }
                 }
             }
         }
+
+        private void decryptButton_Click(object sender, EventArgs e)
+        {
+            
+            if (File.Exists(selectedFile))
+            {
+                using (TextReader tr = new StreamReader(selectedFile))
+                {
+                   // des.Key = 
+                   // des.DecrypteerBericht(tr.ReadToEnd());
+                }
+            }
+          //  String encryptedData = des.EncrypteerBericht(messageTextbox.Text);
+            String encryptedKey = rsa.EncrypteerBericht(Convert.ToBase64String(des.Key));
+        }
+
+        private void selectKeyButton_Click(object sender, EventArgs e)
+        {
+            // 0 = A
+            // 1 = B
+            rsa = new RSA();
+            des = new DES();
+            if (toggleABAmbiance.Toggled == true)
+            {
+                rsa.Persoon = 0; //set to A
+            }
+            else
+            {
+                rsa.Persoon = 1; //set to B
+            }
+            openFileDialog.ShowDialog();
+            if (File.Exists(openFileDialog.FileName))
+            {
+                using (TextReader tr = new StreamReader(openFileDialog.FileName))
+                {
+                    String decryptedKey = rsa.DecrypteerBericht(tr.ReadToEnd());
+                    byte[] decryptedBytes = new byte[decryptedKey.Length * sizeof(char)];
+                    System.Buffer.BlockCopy(decryptedKey.ToCharArray(), 0, decryptedBytes, 0, decryptedBytes.Length);
+                    des.Key = decryptedBytes;
+                }
+                selectKeyLabel.Text = "Key loaded";
+            }
+            else
+                selectKeyLabel.Text = "No key loaded";
+
+        }
+
+     
 
     }
 }
