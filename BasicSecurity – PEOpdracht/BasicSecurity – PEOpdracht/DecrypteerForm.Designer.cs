@@ -32,13 +32,14 @@
             this.ambianceThemeContainer = new Ambiance.Ambiance_ThemeContainer();
             this.selectKeyLabel = new Ambiance.Ambiance_Label();
             this.selectKeyButton = new Ambiance.Ambiance_Button_1();
-            this.decryptButton = new Ambiance.Ambiance_Button_1();
+            this.decryptTextButton = new Ambiance.Ambiance_Button_1();
             this.decryptTextBox = new Ambiance.Ambiance_TextBox();
             this.ambiance_Label1 = new Ambiance.Ambiance_Label();
             this.selectedFileLabel = new Ambiance.Ambiance_Label();
             this.selectFileButton = new Ambiance.Ambiance_Button_1();
             this.ambianceControlBox = new Ambiance.Ambiance_ControlBox();
             this.toggleABAmbiance = new Ambiance.Ambiance_AB();
+            this.decryptFileButton = new Ambiance.Ambiance_Button_1();
             this.ambianceThemeContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,9 +50,10 @@
             // ambianceThemeContainer
             // 
             this.ambianceThemeContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            this.ambianceThemeContainer.Controls.Add(this.decryptFileButton);
             this.ambianceThemeContainer.Controls.Add(this.selectKeyLabel);
             this.ambianceThemeContainer.Controls.Add(this.selectKeyButton);
-            this.ambianceThemeContainer.Controls.Add(this.decryptButton);
+            this.ambianceThemeContainer.Controls.Add(this.decryptTextButton);
             this.ambianceThemeContainer.Controls.Add(this.decryptTextBox);
             this.ambianceThemeContainer.Controls.Add(this.ambiance_Label1);
             this.ambianceThemeContainer.Controls.Add(this.selectedFileLabel);
@@ -97,20 +99,20 @@
             this.selectKeyButton.TextAlignment = System.Drawing.StringAlignment.Center;
             this.selectKeyButton.Click += new System.EventHandler(this.selectKeyButton_Click);
             // 
-            // decryptButton
+            // decryptTextButton
             // 
-            this.decryptButton.BackColor = System.Drawing.Color.Transparent;
-            this.decryptButton.Enabled = false;
-            this.decryptButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.decryptButton.Image = null;
-            this.decryptButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.decryptButton.Location = new System.Drawing.Point(286, 233);
-            this.decryptButton.Name = "decryptButton";
-            this.decryptButton.Size = new System.Drawing.Size(177, 30);
-            this.decryptButton.TabIndex = 13;
-            this.decryptButton.Text = "Decrypt message";
-            this.decryptButton.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.decryptButton.Click += new System.EventHandler(this.decryptButton_Click);
+            this.decryptTextButton.BackColor = System.Drawing.Color.Transparent;
+            this.decryptTextButton.Enabled = false;
+            this.decryptTextButton.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.decryptTextButton.Image = null;
+            this.decryptTextButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.decryptTextButton.Location = new System.Drawing.Point(23, 237);
+            this.decryptTextButton.Name = "decryptTextButton";
+            this.decryptTextButton.Size = new System.Drawing.Size(177, 30);
+            this.decryptTextButton.TabIndex = 13;
+            this.decryptTextButton.Text = "Decrypt to text";
+            this.decryptTextButton.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.decryptTextButton.Click += new System.EventHandler(this.decryptButton_Click);
             // 
             // decryptTextBox
             // 
@@ -190,6 +192,21 @@
             this.toggleABAmbiance.Toggled = true;
             this.toggleABAmbiance.Type = Ambiance.Ambiance_AB._Type.AB;
             // 
+            // decryptFileButton
+            // 
+            this.decryptFileButton.BackColor = System.Drawing.Color.Transparent;
+            this.decryptFileButton.Enabled = false;
+            this.decryptFileButton.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.decryptFileButton.Image = null;
+            this.decryptFileButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.decryptFileButton.Location = new System.Drawing.Point(290, 233);
+            this.decryptFileButton.Name = "decryptFileButton";
+            this.decryptFileButton.Size = new System.Drawing.Size(177, 30);
+            this.decryptFileButton.TabIndex = 16;
+            this.decryptFileButton.Text = "Decrypt to file";
+            this.decryptFileButton.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.decryptFileButton.Click += new System.EventHandler(this.decryptFileButton_Click);
+            // 
             // DecrypteerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,9 +234,10 @@
         private Ambiance.Ambiance_Label ambiance_Label1;
         private Ambiance.Ambiance_ControlBox ambianceControlBox;
         private Ambiance.Ambiance_AB toggleABAmbiance;
-        private Ambiance.Ambiance_Button_1 decryptButton;
+        private Ambiance.Ambiance_Button_1 decryptTextButton;
         private Ambiance.Ambiance_TextBox decryptTextBox;
         private Ambiance.Ambiance_Button_1 selectKeyButton;
         private Ambiance.Ambiance_Label selectKeyLabel;
+        private Ambiance.Ambiance_Button_1 decryptFileButton;
     }
 }

@@ -43,7 +43,7 @@ namespace BasicSecurity___PEOpdracht
             return decryptedString;
         }
 
-        public void DecrypteerBericht(Byte[] encrypted)
+        public string DecrypteerBericht(Byte[] encrypted)
         {
             try
             {
@@ -56,13 +56,14 @@ namespace BasicSecurity___PEOpdracht
                     string decrypted = DecryptStringFromBytes(encrypted, myTripleDES.Key, myTripleDES.IV);
 
                     //Display the original data and the decrypted data.
-                    Console.WriteLine(decrypted);
+                    return decrypted;
                 }
 
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error: {0}", e.Message);
+                return "";
             }
         }
 

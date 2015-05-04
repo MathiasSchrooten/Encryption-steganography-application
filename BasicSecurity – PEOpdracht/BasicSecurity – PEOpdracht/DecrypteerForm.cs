@@ -16,6 +16,7 @@ namespace BasicSecurity___PEOpdracht
         private string selectedFile = "";
         private DES des;
         private RSA rsa;
+        private bool keyLoad = false;
         public DecrypteerForm()
         {
             InitializeComponent();
@@ -34,14 +35,14 @@ namespace BasicSecurity___PEOpdracht
             {
                 selectedFile = fileLocation;
                 selectedFileLabel.Text = "File selected: " + fileLocation;
-                decryptButton.Enabled = true;
+                decryptTextButton.Enabled = true;
                 decryptTextBox.Enabled = true;
             }
             else
             {
                 selectedFileLabel.Text = "No file selected";
                 selectedFile = "";
-                decryptButton.Enabled = false;
+                decryptTextButton.Enabled = false;
                 decryptTextBox.Enabled = false;
             }
         }
@@ -76,18 +77,48 @@ namespace BasicSecurity___PEOpdracht
         private void decryptButton_Click(object sender, EventArgs e)
         {
             
-            if (File.Exists(selectedFile))
+            if (File.Exists(selectedFile) && keyLoad)
             {
                 using (TextReader tr = new StreamReader(selectedFile))
                 {
-                   // des.Key = 
-                   // des.DecrypteerBericht(tr.ReadToEnd());
+                    string fileContent = tr.ReadToEnd();
+                    
+                   string dec = des.DecrypteerBericht(Encoding.ASCII.GetBytes(fileContent));
+                   decryptTextBox.Text = dec;
                 }
             }
-          //  String encryptedData = des.EncrypteerBericht(messageTextbox.Text);
-            String encryptedKey = rsa.EncrypteerBericht(Convert.ToBase64String(des.Key));
+            else if (!keyLoad && File.Exists(selectedFile))
+            {
+                MessageBox.Show("There is no or a wrong key selected. Please select another key");
+            }
+            else{
+                MessageBox.Show("No file selected. Please select a file");
+            }
         }
+        private void decryptFileButton_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(selectedFile) && keyLoad)
+            {
+                using (TextReader tr = new StreamReader(selectedFile))
+                {
 
+                    string fileContent = tr.ReadToEnd();
+
+                    string dec = des.DecrypteerBericht(Encoding.ASCII.GetBytes(fileContent));
+                    using(StreamWriter writer = new StreamWriter(selectedFile + ".Decrypted.txt"))
+                        writer.Write(dec);
+                    
+                }
+            }
+            else if (!keyLoad && File.Exists(selectedFile))
+            {
+                MessageBox.Show("There is no or a wrong key selected. Please select another key");
+            }
+            else
+            {
+                MessageBox.Show("No file selected. Please select a file");
+            }
+        }
         private void selectKeyButton_Click(object sender, EventArgs e)
         {
             // 0 = A
@@ -105,6 +136,7 @@ namespace BasicSecurity___PEOpdracht
             openFileDialog.ShowDialog();
             if (File.Exists(openFileDialog.FileName))
             {
+                try { 
                 using (TextReader tr = new StreamReader(openFileDialog.FileName))
                 {
                     String decryptedKey = rsa.DecrypteerBericht(tr.ReadToEnd());
@@ -113,11 +145,22 @@ namespace BasicSecurity___PEOpdracht
                     des.Key = decryptedBytes;
                 }
                 selectKeyLabel.Text = "Key loaded";
+                keyLoad = true;
+                }
+                catch (Exception ex)
+                {
+                    selectKeyLabel.Text = "Error with key selection, please try again";
+                    keyLoad = false;
+                }
             }
-            else
+            else { 
                 selectKeyLabel.Text = "No key loaded";
+                keyLoad = false;
+            }
 
         }
+
+       
 
      
 
