@@ -114,8 +114,6 @@
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(177, 222);
             this.errorLabel.TabIndex = 9;
-            this.errorLabel.Text = "An error has occured";
-            this.errorLabel.Visible = false;
             // 
             // succesAmbianceLinkLabel
             // 

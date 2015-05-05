@@ -72,11 +72,11 @@ namespace BasicSecurity___PEOpdracht
                     encryptedDataString = Convert.ToBase64String(encryptedData);
                 }
             }
-            catch (ArgumentNullException)
+            catch (Exception ex)
             {
                 //Catch this exception in case the encryption did 
                 //not succeed.
-                Console.WriteLine("Encryption failed.");
+                Console.WriteLine("Encryption failed." + ex.Message);
             }
 
             return encryptedDataString;
