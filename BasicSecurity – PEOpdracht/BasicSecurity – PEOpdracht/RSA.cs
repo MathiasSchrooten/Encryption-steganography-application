@@ -60,7 +60,8 @@ namespace BasicSecurity___PEOpdracht
                     String key = reader.ReadLine();
 
                     reader.Close();
-
+                    Console.WriteLine(RSA.ToXmlString(true));
+                    Console.WriteLine(RSA.ToXmlString(false));
                     RSA.FromXmlString(key);
 
                     encryptedData = RSAEncrypt(dataToEncrypt, RSA.ExportParameters(false), false);
@@ -108,10 +109,9 @@ namespace BasicSecurity___PEOpdracht
                         reader = new StreamReader(Properties.Settings.Default.SharedFolder + "/Keys/PrivateB.txt");
                     }
 
-                    String key = reader.ReadLine();
+                    String key = reader.ReadToEnd();
 
                     reader.Close();
-
                     RSA.FromXmlString(key);
                     byte[] Encrbytes = new byte[encrypted.Length * sizeof(char)];
                     System.Buffer.BlockCopy(encrypted.ToCharArray(), 0, Encrbytes, 0, Encrbytes.Length);
@@ -129,7 +129,7 @@ namespace BasicSecurity___PEOpdracht
             {
                 //Catch this exception in case the encryption did 
                 //not succeed.
-                Console.WriteLine("Encryption failed.");
+                Console.WriteLine("Decryption failed.");
 
             }
             return decryptedDataString;
@@ -141,7 +141,7 @@ namespace BasicSecurity___PEOpdracht
             {
                 byte[] encryptedData;
                 //Create a new instance of RSACryptoServiceProvider. 
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(1024))
                 {
 
                     //Import the RSA Key information. This only needs 
@@ -171,12 +171,12 @@ namespace BasicSecurity___PEOpdracht
             {
                 byte[] decryptedData;
                 //Create a new instance of RSACryptoServiceProvider. 
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(1024))
                 {
                     //Import the RSA Key information. This needs 
                     //to include the private key information.
                     RSA.ImportParameters(RSAKeyInfo);
-
+                    Console.WriteLine(RSA.ToXmlString(true));
                     //Decrypt the passed byte array and specify OAEP padding.   
                     //OAEP padding is only available on Microsoft Windows XP or 
                     //later.  

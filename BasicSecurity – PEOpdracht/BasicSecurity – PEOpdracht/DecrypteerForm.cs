@@ -20,6 +20,8 @@ namespace BasicSecurity___PEOpdracht
         public DecrypteerForm()
         {
             InitializeComponent();
+            rsa = new RSA();
+            des = new DES();
         }
 
         private void selectFileButton_Click(object sender, EventArgs e)
@@ -123,8 +125,7 @@ namespace BasicSecurity___PEOpdracht
         {
             // 0 = A
             // 1 = B
-            rsa = new RSA();
-            des = new DES();
+
             if (toggleABAmbiance.Toggled == true)
             {
                 rsa.Persoon = 0; //set to A

@@ -38,8 +38,8 @@ namespace BasicSecurity___PEOpdracht
             try
             {
                 String encryptedData = des.EncrypteerBericht(messageTextbox.Text);
-                String encryptedKey = rsa.EncrypteerBericht(Convert.ToBase64String(des.Key));
-
+                String encryptedKey = rsa.EncrypteerBericht(System.Text.Encoding.UTF8.GetString(des.Key));
+                Console.WriteLine(Convert.ToString(des.Key));
                 String textFile = "";
                 String keyFile = "";
 
@@ -152,7 +152,7 @@ namespace BasicSecurity___PEOpdracht
                 reader.Close();
 
                 String encryptedData = des.EncrypteerBericht(ingelezenTekst);
-                String encryptedKey = rsa.EncrypteerBericht(Convert.ToBase64String(des.Key));
+                String encryptedKey = rsa.EncrypteerBericht(System.Text.Encoding.UTF8.GetString(des.Key));
 
                 StreamWriter writer = new StreamWriter(openFileDialog.FileName);
 
