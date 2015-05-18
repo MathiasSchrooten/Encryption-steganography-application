@@ -21,18 +21,17 @@ namespace BasicSecurity___PEOpdracht
             set { persoon = value; }
         }
 
-        public String EncrypteerBericht(String message)
+        public byte[] EncrypteerBericht(byte[] dataToEncrypt)
         {
             String encryptedDataString = "";
-
+            byte[] encryptedData = new byte[0];
             try
             {
                 //Create a UnicodeEncoder to convert between byte array and string.
                 UnicodeEncoding ByteConverter = new UnicodeEncoding();
 
                 //Create byte arrays to hold original, encrypted, and decrypted data. 
-                byte[] dataToEncrypt = System.Text.Encoding.Unicode.GetBytes(message);
-                byte[] encryptedData;
+               
 
                 //Create a new instance of RSACryptoServiceProvider to generate 
                 //public and private key data. 
@@ -60,8 +59,6 @@ namespace BasicSecurity___PEOpdracht
                     String key = reader.ReadLine();
 
                     reader.Close();
-                    Console.WriteLine(RSA.ToXmlString(true));
-                    Console.WriteLine(RSA.ToXmlString(false));
                     RSA.FromXmlString(key);
 
                     encryptedData = RSAEncrypt(dataToEncrypt, RSA.ExportParameters(false), false);
@@ -70,7 +67,7 @@ namespace BasicSecurity___PEOpdracht
                     //Console.WriteLine("Priv key RSA = {0}", RSA.ToXmlString(true)); //Work in progress
                     //Console.WriteLine("Pub key RSA = {0}", RSA.ToXmlString(false)); //Work in progress
                     //Display the encrypted plaintext to the console. 
-                    encryptedDataString = Convert.ToBase64String(encryptedData);
+                    //encryptedDataString = Convert.ToBase64String(encryptedData);
                 }
             }
             catch (Exception ex)
@@ -80,19 +77,20 @@ namespace BasicSecurity___PEOpdracht
                 Console.WriteLine("Encryption failed." + ex.Message);
             }
 
-            return encryptedDataString;
+            return encryptedData;
         }
 
-        public String DecrypteerBericht(String encrypted)
+        public byte[] DecrypteerBericht(byte[] encrypted)
         {
             String decryptedDataString = "";
+            byte[] decryptedData = new byte[0];
             try
             {
                 //Create a UnicodeEncoder to convert between byte array and string.
                 UnicodeEncoding ByteConverter = new UnicodeEncoding();
 
                 //Create byte arrays to hold original, encrypted, and decrypted data. 
-                byte[] decryptedData;
+               
 
                 //Create a new instance of RSACryptoServiceProvider to generate 
                 //public and private key data. 
@@ -113,16 +111,16 @@ namespace BasicSecurity___PEOpdracht
 
                     reader.Close();
                     RSA.FromXmlString(key);
-                    byte[] Encrbytes = new byte[encrypted.Length * sizeof(char)];
-                    System.Buffer.BlockCopy(encrypted.ToCharArray(), 0, Encrbytes, 0, Encrbytes.Length);
+                  //  byte[] Encrbytes = new byte[encrypted.Length * sizeof(char)];
+                  //  System.Buffer.BlockCopy(encrypted.ToCharArray(), 0, Encrbytes, 0, Encrbytes.Length);
                     //Pass the data to DECRYPT, the private key information  
                     //(using RSACryptoServiceProvider.ExportParameters(true), 
                     //and a boolean flag specifying no OAEP padding.
-                    decryptedData = RSADecrypt(Encrbytes, RSA.ExportParameters(true), false);
+                    decryptedData = RSADecrypt(encrypted, RSA.ExportParameters(true), false);
 
                     //Display the decrypted plaintext to the console. 
-                    Console.WriteLine("Decrypted plaintext: {0}", ByteConverter.GetString(decryptedData));
-                    decryptedDataString = Convert.ToString(decryptedData);
+                //    Console.WriteLine("Decrypted plaintext: {0}", ByteConverter.GetString(decryptedData));
+                  //  decryptedDataString = Convert.ToString(decryptedData);
                 }
             }
             catch (ArgumentNullException)
@@ -132,7 +130,7 @@ namespace BasicSecurity___PEOpdracht
                 Console.WriteLine("Decryption failed.");
 
             }
-            return decryptedDataString;
+            return decryptedData;
         }
 
         static public byte[] RSAEncrypt(byte[] DataToEncrypt, RSAParameters RSAKeyInfo, bool DoOAEPPadding)

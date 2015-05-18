@@ -38,7 +38,7 @@ namespace BasicSecurity___PEOpdracht
             try
             {
                 String encryptedData = des.EncrypteerBericht(messageTextbox.Text);
-                String encryptedKey = rsa.EncrypteerBericht(System.Text.Encoding.UTF8.GetString(des.Key));
+                byte[] encryptedKey = rsa.EncrypteerBericht(des.Key);
                 Console.WriteLine(Convert.ToString(des.Key));
                 String textFile = "";
                 String keyFile = "";
@@ -46,12 +46,12 @@ namespace BasicSecurity___PEOpdracht
                 if (toggleABAmbiance.Toggled == true)
                 {
                     textFile = "/A-encryptedText.txt";
-                    keyFile = "/A-encryptedDESKey.txt";
+                    keyFile = "/A-encryptedDES.key";
                 }
                 else
                 {
                     textFile = "/B-encryptedText.txt";
-                    keyFile = "/B-encryptedDESKey.txt";
+                    keyFile = "/B-encryptedDES.key";
                 }
 
                 StreamWriter writer;
@@ -60,11 +60,12 @@ namespace BasicSecurity___PEOpdracht
                 writer.Write(encryptedData);
 
                 writer.Close();
+                System.IO.FileStream _FileStream = new System.IO.FileStream(Properties.Settings.Default.SharedFolder + keyFile, System.IO.FileMode.Create, System.IO.FileAccess.Write);
+               // writer = new StreamWriter(Properties.Settings.Default.SharedFolder + keyFile);
 
-                writer = new StreamWriter(Properties.Settings.Default.SharedFolder + keyFile);
-
-                writer.Write(encryptedKey);
-
+               // writer.Write(encryptedKey);
+                _FileStream.Write(encryptedKey, 0, encryptedKey.Length);
+                _FileStream.Close();
                 writer.Close();
             }
             catch (Exception ex)
@@ -152,7 +153,7 @@ namespace BasicSecurity___PEOpdracht
                 reader.Close();
 
                 String encryptedData = des.EncrypteerBericht(ingelezenTekst);
-                String encryptedKey = rsa.EncrypteerBericht(System.Text.Encoding.UTF8.GetString(des.Key));
+                byte[] encryptedKey = rsa.EncrypteerBericht(des.Key);
 
                 StreamWriter writer = new StreamWriter(openFileDialog.FileName);
 

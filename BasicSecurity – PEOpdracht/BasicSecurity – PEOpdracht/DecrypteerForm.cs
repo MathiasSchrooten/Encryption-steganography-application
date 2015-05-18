@@ -137,14 +137,13 @@ namespace BasicSecurity___PEOpdracht
             openFileDialog.ShowDialog();
             if (File.Exists(openFileDialog.FileName))
             {
-                try { 
-                using (TextReader tr = new StreamReader(openFileDialog.FileName))
-                {
-                    String decryptedKey = rsa.DecrypteerBericht(tr.ReadToEnd());
-                    byte[] decryptedBytes = new byte[decryptedKey.Length * sizeof(char)];
-                    System.Buffer.BlockCopy(decryptedKey.ToCharArray(), 0, decryptedBytes, 0, decryptedBytes.Length);
-                    des.Key = decryptedBytes;
-                }
+                try {
+                    byte[] encryptedKey = File.ReadAllBytes(openFileDialog.FileName);
+                    byte[] decryptedKey = rsa.DecrypteerBericht(encryptedKey);
+                   // byte[] decryptedBytes = new byte[decryptedKey.Length * sizeof(char)];
+                    //System.Buffer.BlockCopy(decryptedKey.ToCharArray(), 0, decryptedBytes, 0, decryptedBytes.Length);
+                    des.Key = decryptedKey;
+                
                 selectKeyLabel.Text = "Key loaded";
                 keyLoad = true;
                 }
