@@ -67,14 +67,11 @@ namespace BasicSecurity___PEOpdracht
                 _FileStream.Write(encryptedKey, 0, encryptedKey.Length);
                 _FileStream.Close();
               //  writer.Close();
+                succesAmbianceLinkLabel.Visible = true;
             }
             catch (Exception ex)
             {
                 errorLabel.Text = "An error has occured: " + ex.Message;
-            }
-            finally
-            {
-                succesAmbianceLinkLabel.Visible = true;
             }
         }
 

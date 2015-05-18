@@ -65,7 +65,7 @@ namespace BasicSecurity___PEOpdracht
             catch (Exception e)
             {
                 Console.WriteLine("Error: {0}", e.Message);
-                return "";
+                throw new Exception("Error in DES decryption"); 
             }
         }
 

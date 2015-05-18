@@ -14,7 +14,7 @@ namespace BasicSecurity___PEOpdracht
         // 0 = A
         // 1 = B
         private int persoon = 0;
-
+        private string homeFolder = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
         public int Persoon
         {
             get { return persoon;}
@@ -49,11 +49,11 @@ namespace BasicSecurity___PEOpdracht
 
                     if (persoon == 0)
                     {
-                        reader = new StreamReader(Properties.Settings.Default.SharedFolder +  "/Keys/PublicB.txt");
+                        reader = new StreamReader(homeFolder + "/Keys/PublicB.txt");
                     }
                     else
                     {
-                        reader = new StreamReader(Properties.Settings.Default.SharedFolder + "/Keys/PublicA.txt");
+                        reader = new StreamReader(homeFolder + "/Keys/PublicA.txt");
                     }
 
                     String key = reader.ReadLine();
@@ -100,11 +100,11 @@ namespace BasicSecurity___PEOpdracht
 
                     if (persoon == 0)
                     {
-                        reader = new StreamReader(Properties.Settings.Default.SharedFolder + "/Keys/PrivateA.txt");
+                        reader = new StreamReader(homeFolder + "/Keys/PrivateA.txt");
                     }
                     else
                     {
-                        reader = new StreamReader(Properties.Settings.Default.SharedFolder + "/Keys/PrivateB.txt");
+                        reader = new StreamReader(homeFolder + "/Keys/PrivateB.txt");
                     }
 
                     String key = reader.ReadToEnd();

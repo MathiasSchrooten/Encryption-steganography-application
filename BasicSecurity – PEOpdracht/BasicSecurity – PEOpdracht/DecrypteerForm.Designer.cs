@@ -30,6 +30,7 @@
         {
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ambianceThemeContainer = new Ambiance.Ambiance_ThemeContainer();
+            this.decryptFileButton = new Ambiance.Ambiance_Button_1();
             this.selectKeyLabel = new Ambiance.Ambiance_Label();
             this.selectKeyButton = new Ambiance.Ambiance_Button_1();
             this.decryptTextButton = new Ambiance.Ambiance_Button_1();
@@ -39,7 +40,6 @@
             this.selectFileButton = new Ambiance.Ambiance_Button_1();
             this.ambianceControlBox = new Ambiance.Ambiance_ControlBox();
             this.toggleABAmbiance = new Ambiance.Ambiance_AB();
-            this.decryptFileButton = new Ambiance.Ambiance_Button_1();
             this.ambianceThemeContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +72,21 @@
             this.ambianceThemeContainer.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.ambianceThemeContainer.TabIndex = 3;
             this.ambianceThemeContainer.Text = "Decrypt";
+            // 
+            // decryptFileButton
+            // 
+            this.decryptFileButton.BackColor = System.Drawing.Color.Transparent;
+            this.decryptFileButton.Enabled = false;
+            this.decryptFileButton.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.decryptFileButton.Image = null;
+            this.decryptFileButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.decryptFileButton.Location = new System.Drawing.Point(290, 233);
+            this.decryptFileButton.Name = "decryptFileButton";
+            this.decryptFileButton.Size = new System.Drawing.Size(177, 30);
+            this.decryptFileButton.TabIndex = 16;
+            this.decryptFileButton.Text = "Decrypt to file";
+            this.decryptFileButton.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.decryptFileButton.Click += new System.EventHandler(this.decryptFileButton_Click);
             // 
             // selectKeyLabel
             // 
@@ -117,14 +132,13 @@
             // decryptTextBox
             // 
             this.decryptTextBox.BackColor = System.Drawing.Color.Transparent;
-            this.decryptTextBox.Enabled = false;
             this.decryptTextBox.Font = new System.Drawing.Font("Tahoma", 11F);
             this.decryptTextBox.ForeColor = System.Drawing.Color.DimGray;
             this.decryptTextBox.Location = new System.Drawing.Point(27, 269);
             this.decryptTextBox.MaxLength = 32767;
             this.decryptTextBox.Multiline = true;
             this.decryptTextBox.Name = "decryptTextBox";
-            this.decryptTextBox.ReadOnly = true;
+            this.decryptTextBox.ReadOnly = false;
             this.decryptTextBox.Size = new System.Drawing.Size(440, 156);
             this.decryptTextBox.TabIndex = 12;
             this.decryptTextBox.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
@@ -191,21 +205,7 @@
             this.toggleABAmbiance.Text = "ambiance_AB1";
             this.toggleABAmbiance.Toggled = true;
             this.toggleABAmbiance.Type = Ambiance.Ambiance_AB._Type.AB;
-            // 
-            // decryptFileButton
-            // 
-            this.decryptFileButton.BackColor = System.Drawing.Color.Transparent;
-            this.decryptFileButton.Enabled = false;
-            this.decryptFileButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.decryptFileButton.Image = null;
-            this.decryptFileButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.decryptFileButton.Location = new System.Drawing.Point(290, 233);
-            this.decryptFileButton.Name = "decryptFileButton";
-            this.decryptFileButton.Size = new System.Drawing.Size(177, 30);
-            this.decryptFileButton.TabIndex = 16;
-            this.decryptFileButton.Text = "Decrypt to file";
-            this.decryptFileButton.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.decryptFileButton.Click += new System.EventHandler(this.decryptFileButton_Click);
+            this.toggleABAmbiance.ToggledChanged += new Ambiance.Ambiance_AB.ToggledChangedEventHandler(this.toggleABAmbiance_ToggledChanged);
             // 
             // DecrypteerForm
             // 

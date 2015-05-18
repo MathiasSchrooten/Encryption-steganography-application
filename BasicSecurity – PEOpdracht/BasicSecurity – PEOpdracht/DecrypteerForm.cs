@@ -38,6 +38,7 @@ namespace BasicSecurity___PEOpdracht
                 selectedFile = fileLocation;
                 selectedFileLabel.Text = "File selected: " + fileLocation;
                 decryptTextButton.Enabled = true;
+                decryptFileButton.Enabled = true;
                 decryptTextBox.Enabled = true;
             }
             else
@@ -45,6 +46,7 @@ namespace BasicSecurity___PEOpdracht
                 selectedFileLabel.Text = "No file selected";
                 selectedFile = "";
                 decryptTextButton.Enabled = false;
+                decryptFileButton.Enabled = false;
                 decryptTextBox.Enabled = false;
             }
         }
@@ -78,7 +80,7 @@ namespace BasicSecurity___PEOpdracht
 
         private void decryptButton_Click(object sender, EventArgs e)
         {
-            
+            try { 
             if (File.Exists(selectedFile) && keyLoad)
             {
                 
@@ -95,21 +97,24 @@ namespace BasicSecurity___PEOpdracht
             else{
                 MessageBox.Show("No file selected. Please select a file");
             }
+                }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                decryptTextBox.Text = "";
+                
+                MessageBox.Show("Something went wrong, did you select the right user to decrypt the key?");
+            }
         }
         private void decryptFileButton_Click(object sender, EventArgs e)
         {
             if (File.Exists(selectedFile) && keyLoad)
             {
-                using (TextReader tr = new StreamReader(selectedFile))
-                {
-
-                    string fileContent = tr.ReadToEnd();
-
-                    string dec = des.DecrypteerBericht(Encoding.ASCII.GetBytes(fileContent));
+                byte[] fileContent = File.ReadAllBytes(selectedFile);
+                string dec = des.DecrypteerBericht(fileContent);
                     using(StreamWriter writer = new StreamWriter(selectedFile + ".Decrypted.txt"))
                         writer.Write(dec);
-                    
-                }
+                    System.Diagnostics.Process.Start(Properties.Settings.Default.SharedFolder);
             }
             else if (!keyLoad && File.Exists(selectedFile))
             {
@@ -157,6 +162,17 @@ namespace BasicSecurity___PEOpdracht
                 keyLoad = false;
             }
 
+        }
+
+        private void toggleABAmbiance_ToggledChanged()
+        {
+            selectKeyLabel.Text = "No selected key";
+            keyLoad = false;
+        }
+
+        private void succesAmbianceLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Properties.Settings.Default.SharedFolder);
         }
 
        
