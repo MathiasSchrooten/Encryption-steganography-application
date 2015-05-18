@@ -14,9 +14,10 @@ namespace BasicSecurity___PEOpdracht
 
         public Byte[] Key { get { return key; } set { key = value; } }
 
-        public String EncrypteerBericht(String message)
+        public byte[] EncrypteerBericht(String message)
         {
             String decryptedString = "";
+            byte[] encrypted = new byte[0];
             try
             {
                 // Create a new instance of the TripleDESCryptoServiceProvider 
@@ -25,13 +26,13 @@ namespace BasicSecurity___PEOpdracht
                 using (TripleDESCryptoServiceProvider myTripleDES = new TripleDESCryptoServiceProvider())
                 {
                     // Encrypt the string to an array of bytes. 
-                    byte[] encrypted = EncryptStringToBytes(message, myTripleDES.Key, myTripleDES.IV);
+                    encrypted = EncryptStringToBytes(message, myTripleDES.Key, myTripleDES.IV);
 
                     Key = myTripleDES.Key;
 
                     //Display the original data and the decrypted data.
                     //Console.WriteLine(Convert.ToBase64String(encrypted));
-                    decryptedString = Convert.ToBase64String(encrypted);
+               //     decryptedString = System.Text.Encoding.UTF8.GetString(encrypted);
                 }
 
             }
@@ -40,7 +41,7 @@ namespace BasicSecurity___PEOpdracht
                 Console.WriteLine("Error: {0}", e.Message);
             }
 
-            return decryptedString;
+            return encrypted;
         }
 
         public string DecrypteerBericht(Byte[] encrypted)
@@ -53,6 +54,7 @@ namespace BasicSecurity___PEOpdracht
                 using (TripleDESCryptoServiceProvider myTripleDES = new TripleDESCryptoServiceProvider())
                 {
                     // Decrypt the bytes to a string. 
+                    myTripleDES.Key = this.key;
                     string decrypted = DecryptStringFromBytes(encrypted, myTripleDES.Key, myTripleDES.IV);
 
                     //Display the original data and the decrypted data.
@@ -83,12 +85,17 @@ namespace BasicSecurity___PEOpdracht
             {
                 tdsAlg.Key = Key;
                 tdsAlg.IV = IV;
-
+                tdsAlg.Mode = CipherMode.ECB;
+                tdsAlg.Padding = PaddingMode.PKCS7;
                 // Create a decrytor to perform the stream transform.
                 ICryptoTransform encryptor = tdsAlg.CreateEncryptor(tdsAlg.Key, tdsAlg.IV);
-
+            /*    ICryptoTransform encr = tdsAlg.CreateEncryptor();
+                byte[] bytes = new byte[plainText.Length * sizeof(char)];
+                System.Buffer.BlockCopy(plainText.ToCharArray(), 0, bytes, 0, bytes.Length);
+                encrypted = encr.TransformFinalBlock(bytes,0,bytes.Length);
+                tdsAlg.Clear();*/
                 // Create the streams used for encryption. 
-                using (MemoryStream msEncrypt = new MemoryStream())
+               using (MemoryStream msEncrypt = new MemoryStream())
                 {
                     using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
                     {
@@ -101,6 +108,7 @@ namespace BasicSecurity___PEOpdracht
                         encrypted = msEncrypt.ToArray();
                     }
                 }
+        
             }
 
             // Return the encrypted bytes from the memory stream. 
@@ -127,9 +135,17 @@ namespace BasicSecurity___PEOpdracht
             {
                 tdsAlg.Key = Key;
                 tdsAlg.IV = IV;
-
+                tdsAlg.Mode = CipherMode.ECB;
+                tdsAlg.Padding = PaddingMode.PKCS7;
                 // Create a decrytor to perform the stream transform.
-                ICryptoTransform decryptor = tdsAlg.CreateDecryptor(tdsAlg.Key, tdsAlg.IV);
+         /*       ICryptoTransform encr = tdsAlg.CreateDecryptor();
+                
+                byte[] bytes = encr.TransformFinalBlock(cipherText, 0, cipherText.Length);
+                char[] chars = new char[bytes.Length / sizeof(char)];
+                System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
+                plaintext = new string(chars);
+                tdsAlg.Clear();*/
+               ICryptoTransform decryptor = tdsAlg.CreateDecryptor(tdsAlg.Key, tdsAlg.IV);
 
                 // Create the streams used for decryption. 
                 using (MemoryStream msDecrypt = new MemoryStream(cipherText))
@@ -145,7 +161,7 @@ namespace BasicSecurity___PEOpdracht
                         }
                     }
                 }
-
+            
             }
 
             return plaintext;

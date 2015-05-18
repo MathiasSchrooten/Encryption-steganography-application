@@ -81,13 +81,12 @@ namespace BasicSecurity___PEOpdracht
             
             if (File.Exists(selectedFile) && keyLoad)
             {
-                using (TextReader tr = new StreamReader(selectedFile))
-                {
-                    string fileContent = tr.ReadToEnd();
+                
+                   byte[] fileContent = File.ReadAllBytes(selectedFile);
                     
-                   string dec = des.DecrypteerBericht(Encoding.ASCII.GetBytes(fileContent));
+                   string dec = des.DecrypteerBericht(fileContent);
                    decryptTextBox.Text = dec;
-                }
+                
             }
             else if (!keyLoad && File.Exists(selectedFile))
             {

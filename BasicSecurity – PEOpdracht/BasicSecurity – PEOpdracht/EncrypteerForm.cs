@@ -37,7 +37,7 @@ namespace BasicSecurity___PEOpdracht
         {
             try
             {
-                String encryptedData = des.EncrypteerBericht(messageTextbox.Text);
+                byte[] encryptedData = des.EncrypteerBericht(messageTextbox.Text);
                 byte[] encryptedKey = rsa.EncrypteerBericht(des.Key);
                 Console.WriteLine(Convert.ToString(des.Key));
                 String textFile = "";
@@ -45,28 +45,28 @@ namespace BasicSecurity___PEOpdracht
 
                 if (toggleABAmbiance.Toggled == true)
                 {
-                    textFile = "/A-encryptedText.txt";
+                    textFile = "/A-encryptedText.des";
                     keyFile = "/A-encryptedDES.key";
                 }
                 else
                 {
-                    textFile = "/B-encryptedText.txt";
+                    textFile = "/B-encryptedText.des";
                     keyFile = "/B-encryptedDES.key";
                 }
 
-                StreamWriter writer;
-                writer = new StreamWriter(Properties.Settings.Default.SharedFolder + textFile);
-
-                writer.Write(encryptedData);
-
-                writer.Close();
-                System.IO.FileStream _FileStream = new System.IO.FileStream(Properties.Settings.Default.SharedFolder + keyFile, System.IO.FileMode.Create, System.IO.FileAccess.Write);
+                System.IO.FileStream _FileStream = new System.IO.FileStream(Properties.Settings.Default.SharedFolder + textFile, System.IO.FileMode.Create, System.IO.FileAccess.Write);
+             //   writer = new StreamWriter(Properties.Settings.Default.SharedFolder + textFile);
+                _FileStream.Write(encryptedData, 0, encryptedData.Length);
+              //  writer.Write(encryptedData);
+                _FileStream.Close();
+               // writer.Close();
+                _FileStream = new System.IO.FileStream(Properties.Settings.Default.SharedFolder + keyFile, System.IO.FileMode.Create, System.IO.FileAccess.Write);
                // writer = new StreamWriter(Properties.Settings.Default.SharedFolder + keyFile);
 
                // writer.Write(encryptedKey);
                 _FileStream.Write(encryptedKey, 0, encryptedKey.Length);
                 _FileStream.Close();
-                writer.Close();
+              //  writer.Close();
             }
             catch (Exception ex)
             {
@@ -146,18 +146,39 @@ namespace BasicSecurity___PEOpdracht
 
             if (openFileDialog.FileName != "")
             {
+                String textFile = "";
+                String keyFile = "";
                 StreamReader reader = new StreamReader(openFileDialog.FileName);
 
                 String ingelezenTekst = reader.ReadToEnd();
-
+                
                 reader.Close();
-
-                String encryptedData = des.EncrypteerBericht(ingelezenTekst);
+                if (toggleABAmbiance.Toggled == true)
+                {
+                    textFile = "/A-encryptedText.des";
+                    keyFile = "/A-encryptedDES.key";
+                }
+                else
+                {
+                    textFile = "/B-encryptedText.des";
+                    keyFile = "/B-encryptedDES.key";
+                }
+                byte[] encryptedData = des.EncrypteerBericht(ingelezenTekst);
                 byte[] encryptedKey = rsa.EncrypteerBericht(des.Key);
 
-                StreamWriter writer = new StreamWriter(openFileDialog.FileName);
+                System.IO.FileStream _FileStream = new System.IO.FileStream(Properties.Settings.Default.SharedFolder + textFile, System.IO.FileMode.Create, System.IO.FileAccess.Write);
+                //   writer = new StreamWriter(Properties.Settings.Default.SharedFolder + textFile);
+                _FileStream.Write(encryptedData, 0, encryptedData.Length);
+                //  writer.Write(encryptedData);
+                _FileStream.Close();
+                // writer.Close();
+                _FileStream = new System.IO.FileStream(Properties.Settings.Default.SharedFolder + keyFile, System.IO.FileMode.Create, System.IO.FileAccess.Write);
+                // writer = new StreamWriter(Properties.Settings.Default.SharedFolder + keyFile);
 
-                writer.Write(encryptedData);
+                // writer.Write(encryptedKey);
+                _FileStream.Write(encryptedKey, 0, encryptedKey.Length);
+                _FileStream.Close();
+                //  writer.Close();
             }
         }
 
