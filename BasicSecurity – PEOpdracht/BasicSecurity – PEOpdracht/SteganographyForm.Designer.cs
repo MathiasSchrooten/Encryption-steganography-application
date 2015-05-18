@@ -71,7 +71,7 @@
             this.ambiance_ThemeContainer1.SmartBounds = true;
             this.ambiance_ThemeContainer1.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.ambiance_ThemeContainer1.TabIndex = 0;
-            this.ambiance_ThemeContainer1.Text = "ambiance_ThemeContainer1";
+            this.ambiance_ThemeContainer1.Text = "Steganografie";
             // 
             // maxSizeLabel
             // 
@@ -81,9 +81,8 @@
             this.maxSizeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
             this.maxSizeLabel.Location = new System.Drawing.Point(544, 320);
             this.maxSizeLabel.Name = "maxSizeLabel";
-            this.maxSizeLabel.Size = new System.Drawing.Size(38, 20);
+            this.maxSizeLabel.Size = new System.Drawing.Size(0, 20);
             this.maxSizeLabel.TabIndex = 20;
-            this.maxSizeLabel.Text = "fdsq";
             // 
             // ambiance_Label4
             // 
@@ -105,9 +104,8 @@
             this.currentSizeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
             this.currentSizeLabel.Location = new System.Drawing.Point(544, 280);
             this.currentSizeLabel.Name = "currentSizeLabel";
-            this.currentSizeLabel.Size = new System.Drawing.Size(38, 20);
+            this.currentSizeLabel.Size = new System.Drawing.Size(0, 20);
             this.currentSizeLabel.TabIndex = 18;
-            this.currentSizeLabel.Text = "fdsq";
             // 
             // ambiance_ControlBox1
             // 
@@ -234,7 +232,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(261, 65);
             this.Name = "SteganographyForm";
-            this.Text = "ambiance_ThemeContainer1";
+            this.Text = "Steganografie";
             this.TransparencyKey = System.Drawing.Color.Fuchsia;
             this.ambiance_ThemeContainer1.ResumeLayout(false);
             this.ambiance_ThemeContainer1.PerformLayout();
