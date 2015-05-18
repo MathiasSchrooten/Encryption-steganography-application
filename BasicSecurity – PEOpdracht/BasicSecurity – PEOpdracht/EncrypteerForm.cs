@@ -39,19 +39,22 @@ namespace BasicSecurity___PEOpdracht
             {
                 byte[] encryptedData = des.EncrypteerBericht(messageTextbox.Text);
                 byte[] encryptedKey = rsa.EncrypteerBericht(des.Key);
+                byte[] signedHash = rsa.RSASign(encryptedData);
                 Console.WriteLine(Convert.ToString(des.Key));
                 String textFile = "";
                 String keyFile = "";
-
+                String hashFile = "";
                 if (toggleABAmbiance.Toggled == true)
                 {
                     textFile = "/A-encryptedText.des";
                     keyFile = "/A-encryptedDES.key";
+                    hashFile = "/A-signed.hash";
                 }
                 else
                 {
                     textFile = "/B-encryptedText.des";
                     keyFile = "/B-encryptedDES.key";
+                    hashFile = "/B-signed.hash";
                 }
 
                 System.IO.FileStream _FileStream = new System.IO.FileStream(Properties.Settings.Default.SharedFolder + textFile, System.IO.FileMode.Create, System.IO.FileAccess.Write);
@@ -60,13 +63,14 @@ namespace BasicSecurity___PEOpdracht
               //  writer.Write(encryptedData);
                 _FileStream.Close();
                // writer.Close();
-                _FileStream = new System.IO.FileStream(Properties.Settings.Default.SharedFolder + keyFile, System.IO.FileMode.Create, System.IO.FileAccess.Write);
-               // writer = new StreamWriter(Properties.Settings.Default.SharedFolder + keyFile);
 
-               // writer.Write(encryptedKey);
+                _FileStream = new System.IO.FileStream(Properties.Settings.Default.SharedFolder + keyFile, System.IO.FileMode.Create, System.IO.FileAccess.Write);
                 _FileStream.Write(encryptedKey, 0, encryptedKey.Length);
                 _FileStream.Close();
-              //  writer.Close();
+
+                _FileStream = new System.IO.FileStream(Properties.Settings.Default.SharedFolder + hashFile, System.IO.FileMode.Create, System.IO.FileAccess.Write);
+                _FileStream.Write(signedHash, 0, signedHash.Length);
+                _FileStream.Close();
                 succesAmbianceLinkLabel.Visible = true;
             }
             catch (Exception ex)

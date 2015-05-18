@@ -40,6 +40,8 @@
             this.selectFileButton = new Ambiance.Ambiance_Button_1();
             this.ambianceControlBox = new Ambiance.Ambiance_ControlBox();
             this.toggleABAmbiance = new Ambiance.Ambiance_AB();
+            this.selectHashLabel = new Ambiance.Ambiance_Label();
+            this.selectHashButton = new Ambiance.Ambiance_Button_1();
             this.ambianceThemeContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +52,8 @@
             // ambianceThemeContainer
             // 
             this.ambianceThemeContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            this.ambianceThemeContainer.Controls.Add(this.selectHashLabel);
+            this.ambianceThemeContainer.Controls.Add(this.selectHashButton);
             this.ambianceThemeContainer.Controls.Add(this.decryptFileButton);
             this.ambianceThemeContainer.Controls.Add(this.selectKeyLabel);
             this.ambianceThemeContainer.Controls.Add(this.selectKeyButton);
@@ -67,7 +71,7 @@
             this.ambianceThemeContainer.Padding = new System.Windows.Forms.Padding(20, 56, 20, 16);
             this.ambianceThemeContainer.RoundCorners = true;
             this.ambianceThemeContainer.Sizable = true;
-            this.ambianceThemeContainer.Size = new System.Drawing.Size(501, 444);
+            this.ambianceThemeContainer.Size = new System.Drawing.Size(516, 556);
             this.ambianceThemeContainer.SmartBounds = true;
             this.ambianceThemeContainer.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.ambianceThemeContainer.TabIndex = 3;
@@ -80,7 +84,7 @@
             this.decryptFileButton.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.decryptFileButton.Image = null;
             this.decryptFileButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.decryptFileButton.Location = new System.Drawing.Point(290, 233);
+            this.decryptFileButton.Location = new System.Drawing.Point(290, 325);
             this.decryptFileButton.Name = "decryptFileButton";
             this.decryptFileButton.Size = new System.Drawing.Size(177, 30);
             this.decryptFileButton.TabIndex = 16;
@@ -94,7 +98,7 @@
             this.selectKeyLabel.BackColor = System.Drawing.Color.Transparent;
             this.selectKeyLabel.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.selectKeyLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.selectKeyLabel.Location = new System.Drawing.Point(142, 190);
+            this.selectKeyLabel.Location = new System.Drawing.Point(142, 282);
             this.selectKeyLabel.Name = "selectKeyLabel";
             this.selectKeyLabel.Size = new System.Drawing.Size(114, 20);
             this.selectKeyLabel.TabIndex = 15;
@@ -106,7 +110,7 @@
             this.selectKeyButton.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.selectKeyButton.Image = null;
             this.selectKeyButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.selectKeyButton.Location = new System.Drawing.Point(23, 168);
+            this.selectKeyButton.Location = new System.Drawing.Point(23, 260);
             this.selectKeyButton.Name = "selectKeyButton";
             this.selectKeyButton.Size = new System.Drawing.Size(113, 63);
             this.selectKeyButton.TabIndex = 14;
@@ -121,7 +125,7 @@
             this.decryptTextButton.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.decryptTextButton.Image = null;
             this.decryptTextButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.decryptTextButton.Location = new System.Drawing.Point(23, 237);
+            this.decryptTextButton.Location = new System.Drawing.Point(23, 329);
             this.decryptTextButton.Name = "decryptTextButton";
             this.decryptTextButton.Size = new System.Drawing.Size(177, 30);
             this.decryptTextButton.TabIndex = 13;
@@ -134,7 +138,7 @@
             this.decryptTextBox.BackColor = System.Drawing.Color.Transparent;
             this.decryptTextBox.Font = new System.Drawing.Font("Tahoma", 11F);
             this.decryptTextBox.ForeColor = System.Drawing.Color.DimGray;
-            this.decryptTextBox.Location = new System.Drawing.Point(27, 269);
+            this.decryptTextBox.Location = new System.Drawing.Point(27, 361);
             this.decryptTextBox.MaxLength = 32767;
             this.decryptTextBox.Multiline = true;
             this.decryptTextBox.Name = "decryptTextBox";
@@ -152,9 +156,9 @@
             this.ambiance_Label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
             this.ambiance_Label1.Location = new System.Drawing.Point(24, 132);
             this.ambiance_Label1.Name = "ambiance_Label1";
-            this.ambiance_Label1.Size = new System.Drawing.Size(154, 20);
+            this.ambiance_Label1.Size = new System.Drawing.Size(128, 20);
             this.ambiance_Label1.TabIndex = 11;
-            this.ambiance_Label1.Text = "Decrypt key as person";
+            this.ambiance_Label1.Text = "Decrypt as person";
             // 
             // selectedFileLabel
             // 
@@ -207,11 +211,37 @@
             this.toggleABAmbiance.Type = Ambiance.Ambiance_AB._Type.AB;
             this.toggleABAmbiance.ToggledChanged += new Ambiance.Ambiance_AB.ToggledChangedEventHandler(this.toggleABAmbiance_ToggledChanged);
             // 
+            // selectHashLabel
+            // 
+            this.selectHashLabel.AutoSize = true;
+            this.selectHashLabel.BackColor = System.Drawing.Color.Transparent;
+            this.selectHashLabel.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.selectHashLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
+            this.selectHashLabel.Location = new System.Drawing.Point(142, 200);
+            this.selectHashLabel.Name = "selectHashLabel";
+            this.selectHashLabel.Size = new System.Drawing.Size(122, 20);
+            this.selectHashLabel.TabIndex = 18;
+            this.selectHashLabel.Text = "No hash selected";
+            // 
+            // selectHashButton
+            // 
+            this.selectHashButton.BackColor = System.Drawing.Color.Transparent;
+            this.selectHashButton.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.selectHashButton.Image = null;
+            this.selectHashButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.selectHashButton.Location = new System.Drawing.Point(23, 179);
+            this.selectHashButton.Name = "selectHashButton";
+            this.selectHashButton.Size = new System.Drawing.Size(113, 63);
+            this.selectHashButton.TabIndex = 17;
+            this.selectHashButton.Text = "Select Hash";
+            this.selectHashButton.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.selectHashButton.Click += new System.EventHandler(this.selectHashButton_Click);
+            // 
             // DecrypteerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(501, 444);
+            this.ClientSize = new System.Drawing.Size(516, 556);
             this.Controls.Add(this.ambianceThemeContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -239,5 +269,7 @@
         private Ambiance.Ambiance_Button_1 selectKeyButton;
         private Ambiance.Ambiance_Label selectKeyLabel;
         private Ambiance.Ambiance_Button_1 decryptFileButton;
+        private Ambiance.Ambiance_Label selectHashLabel;
+        private Ambiance.Ambiance_Button_1 selectHashButton;
     }
 }
