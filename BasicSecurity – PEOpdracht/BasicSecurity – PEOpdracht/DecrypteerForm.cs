@@ -18,11 +18,15 @@ namespace BasicSecurity___PEOpdracht
         private RSA rsa;
         private bool keyLoad = false;
         private bool hashMatch = false;
+
         public DecrypteerForm()
         {
             InitializeComponent();
             rsa = new RSA();
             des = new DES();
+
+            ambianceControlBox.EnableMaximize = false;
+            ambianceControlBox.Location = new Point(this.Width - 49, 13);
         }
 
         private void selectFileButton_Click(object sender, EventArgs e)

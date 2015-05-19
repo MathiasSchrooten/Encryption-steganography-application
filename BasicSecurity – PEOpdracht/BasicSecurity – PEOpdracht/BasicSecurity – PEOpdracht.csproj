@@ -60,7 +60,6 @@
     <Compile Include="EncrypteerForm.Designer.cs">
       <DependentUpon>EncrypteerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Hash.cs" />
     <Compile Include="HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -30,6 +30,9 @@
         {
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ambianceThemeContainer = new Ambiance.Ambiance_ThemeContainer();
+            this.ambianceControlBox = new Ambiance.Ambiance_ControlBox();
+            this.selectHashLabel = new Ambiance.Ambiance_Label();
+            this.selectHashButton = new Ambiance.Ambiance_Button_1();
             this.decryptFileButton = new Ambiance.Ambiance_Button_1();
             this.selectKeyLabel = new Ambiance.Ambiance_Label();
             this.selectKeyButton = new Ambiance.Ambiance_Button_1();
@@ -38,10 +41,7 @@
             this.ambiance_Label1 = new Ambiance.Ambiance_Label();
             this.selectedFileLabel = new Ambiance.Ambiance_Label();
             this.selectFileButton = new Ambiance.Ambiance_Button_1();
-            this.ambianceControlBox = new Ambiance.Ambiance_ControlBox();
             this.toggleABAmbiance = new Ambiance.Ambiance_AB();
-            this.selectHashLabel = new Ambiance.Ambiance_Label();
-            this.selectHashButton = new Ambiance.Ambiance_Button_1();
             this.ambianceThemeContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +52,7 @@
             // ambianceThemeContainer
             // 
             this.ambianceThemeContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(241)))), ((int)(((byte)(243)))));
+            this.ambianceThemeContainer.Controls.Add(this.ambianceControlBox);
             this.ambianceThemeContainer.Controls.Add(this.selectHashLabel);
             this.ambianceThemeContainer.Controls.Add(this.selectHashButton);
             this.ambianceThemeContainer.Controls.Add(this.decryptFileButton);
@@ -62,7 +63,6 @@
             this.ambianceThemeContainer.Controls.Add(this.ambiance_Label1);
             this.ambianceThemeContainer.Controls.Add(this.selectedFileLabel);
             this.ambianceThemeContainer.Controls.Add(this.selectFileButton);
-            this.ambianceThemeContainer.Controls.Add(this.ambianceControlBox);
             this.ambianceThemeContainer.Controls.Add(this.toggleABAmbiance);
             this.ambianceThemeContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ambianceThemeContainer.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -76,6 +76,44 @@
             this.ambianceThemeContainer.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.ambianceThemeContainer.TabIndex = 3;
             this.ambianceThemeContainer.Text = "Decrypt";
+            // 
+            // ambianceControlBox
+            // 
+            this.ambianceControlBox.BackColor = System.Drawing.Color.Transparent;
+            this.ambianceControlBox.EnableMaximize = true;
+            this.ambianceControlBox.EnableMinimize = true;
+            this.ambianceControlBox.Font = new System.Drawing.Font("Marlett", 7F);
+            this.ambianceControlBox.Location = new System.Drawing.Point(357, 12);
+            this.ambianceControlBox.Name = "ambianceControlBox";
+            this.ambianceControlBox.Size = new System.Drawing.Size(64, 22);
+            this.ambianceControlBox.TabIndex = 19;
+            this.ambianceControlBox.Text = "ambiance_ControlBox1";
+            // 
+            // selectHashLabel
+            // 
+            this.selectHashLabel.AutoSize = true;
+            this.selectHashLabel.BackColor = System.Drawing.Color.Transparent;
+            this.selectHashLabel.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.selectHashLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
+            this.selectHashLabel.Location = new System.Drawing.Point(142, 200);
+            this.selectHashLabel.Name = "selectHashLabel";
+            this.selectHashLabel.Size = new System.Drawing.Size(122, 20);
+            this.selectHashLabel.TabIndex = 18;
+            this.selectHashLabel.Text = "No hash selected";
+            // 
+            // selectHashButton
+            // 
+            this.selectHashButton.BackColor = System.Drawing.Color.Transparent;
+            this.selectHashButton.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.selectHashButton.Image = null;
+            this.selectHashButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.selectHashButton.Location = new System.Drawing.Point(23, 179);
+            this.selectHashButton.Name = "selectHashButton";
+            this.selectHashButton.Size = new System.Drawing.Size(113, 63);
+            this.selectHashButton.TabIndex = 17;
+            this.selectHashButton.Text = "Select Hash";
+            this.selectHashButton.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.selectHashButton.Click += new System.EventHandler(this.selectHashButton_Click);
             // 
             // decryptFileButton
             // 
@@ -188,18 +226,6 @@
             this.selectFileButton.DragDrop += new System.Windows.Forms.DragEventHandler(this.selectFileButton_DragDrop);
             this.selectFileButton.DragEnter += new System.Windows.Forms.DragEventHandler(this.selectFileButton_DragEnter);
             // 
-            // ambianceControlBox
-            // 
-            this.ambianceControlBox.BackColor = System.Drawing.Color.Transparent;
-            this.ambianceControlBox.EnableMaximize = true;
-            this.ambianceControlBox.EnableMinimize = true;
-            this.ambianceControlBox.Font = new System.Drawing.Font("Marlett", 7F);
-            this.ambianceControlBox.Location = new System.Drawing.Point(23, 12);
-            this.ambianceControlBox.Name = "ambianceControlBox";
-            this.ambianceControlBox.Size = new System.Drawing.Size(64, 22);
-            this.ambianceControlBox.TabIndex = 10;
-            this.ambianceControlBox.Text = "ambiance_ControlBox1";
-            // 
             // toggleABAmbiance
             // 
             this.toggleABAmbiance.Location = new System.Drawing.Point(184, 132);
@@ -207,35 +233,9 @@
             this.toggleABAmbiance.Size = new System.Drawing.Size(79, 27);
             this.toggleABAmbiance.TabIndex = 5;
             this.toggleABAmbiance.Text = "ambiance_AB1";
-            this.toggleABAmbiance.Toggled = true;
+            this.toggleABAmbiance.Toggled = false;
             this.toggleABAmbiance.Type = Ambiance.Ambiance_AB._Type.AB;
             this.toggleABAmbiance.ToggledChanged += new Ambiance.Ambiance_AB.ToggledChangedEventHandler(this.toggleABAmbiance_ToggledChanged);
-            // 
-            // selectHashLabel
-            // 
-            this.selectHashLabel.AutoSize = true;
-            this.selectHashLabel.BackColor = System.Drawing.Color.Transparent;
-            this.selectHashLabel.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.selectHashLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.selectHashLabel.Location = new System.Drawing.Point(142, 200);
-            this.selectHashLabel.Name = "selectHashLabel";
-            this.selectHashLabel.Size = new System.Drawing.Size(122, 20);
-            this.selectHashLabel.TabIndex = 18;
-            this.selectHashLabel.Text = "No hash selected";
-            // 
-            // selectHashButton
-            // 
-            this.selectHashButton.BackColor = System.Drawing.Color.Transparent;
-            this.selectHashButton.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.selectHashButton.Image = null;
-            this.selectHashButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.selectHashButton.Location = new System.Drawing.Point(23, 179);
-            this.selectHashButton.Name = "selectHashButton";
-            this.selectHashButton.Size = new System.Drawing.Size(113, 63);
-            this.selectHashButton.TabIndex = 17;
-            this.selectHashButton.Text = "Select Hash";
-            this.selectHashButton.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.selectHashButton.Click += new System.EventHandler(this.selectHashButton_Click);
             // 
             // DecrypteerForm
             // 
@@ -262,7 +262,6 @@
         private Ambiance.Ambiance_Label selectedFileLabel;
         private Ambiance.Ambiance_ThemeContainer ambianceThemeContainer;
         private Ambiance.Ambiance_Label ambiance_Label1;
-        private Ambiance.Ambiance_ControlBox ambianceControlBox;
         private Ambiance.Ambiance_AB toggleABAmbiance;
         private Ambiance.Ambiance_Button_1 decryptTextButton;
         private Ambiance.Ambiance_TextBox decryptTextBox;
@@ -271,5 +270,6 @@
         private Ambiance.Ambiance_Button_1 decryptFileButton;
         private Ambiance.Ambiance_Label selectHashLabel;
         private Ambiance.Ambiance_Button_1 selectHashButton;
+        private Ambiance.Ambiance_ControlBox ambianceControlBox;
     }
 }

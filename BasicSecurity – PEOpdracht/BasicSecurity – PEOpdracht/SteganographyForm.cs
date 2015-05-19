@@ -80,7 +80,7 @@ namespace BasicSecurity___PEOpdracht
                 thePicture.ImageLocation = openFileDialog.FileName;
                 pictureIsSelected = true;
                 thePicture.Refresh();
-                maxSizeLabel.Text = berekenMaxSize().ToString() + " karakters.";
+                maxSizeLabel.Text = berekenMaxSize().ToString() + " characters";
 
             }
             
