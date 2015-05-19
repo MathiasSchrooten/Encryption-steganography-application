@@ -33,6 +33,7 @@ namespace BasicSecurity___PEOpdracht
                     Bitmap bmp = SteganographyClass.EncryptBitmap(toEncrypt.Text, new Bitmap(thePicture.Image));
                     thePicture.Image = bmp;
                     SaveFileDialog dialog = new SaveFileDialog();
+                    dialog.Filter = "PNG files|*.png|JPG Files|*.jpg |BMP Files|*.bmp";
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         pictureIsSelected = true;
@@ -73,7 +74,7 @@ namespace BasicSecurity___PEOpdracht
         {
            
             OpenFileDialog openFileDialog = new OpenFileDialog();
-
+            openFileDialog.Filter = "PNG files|*.png|JPG Files|*.jpg |BMP Files|*.bmp";
             if (openFileDialog.ShowDialog()== DialogResult.OK)
             {
                 
@@ -106,7 +107,7 @@ namespace BasicSecurity___PEOpdracht
             if (pictureIsSelected)
             {
                 //maxSizeLabel.Text = berekenMaxSize().ToString() + " karakters.";
-                
+                currentSizeLabel.Text = toEncrypt.Text.Length.ToString();
             }
         }
       
